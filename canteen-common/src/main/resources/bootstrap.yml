@@ -1,0 +1,192 @@
+server:
+  port: ${random.int[10000,20000]}
+  undertow:
+    io-threads: 8 #核心io线程数，默认一个cpu核心一个线程
+    worker-threads: 64 #工作线程数，默认是io线程数的8倍，取决于系统的阻塞系数
+    buffer-size: 1024 # netty的池化内存管理，大小适宜，否则会影响其它应用
+    direct-buffers: true
+spring:
+  application:
+    #默认值，需要被覆盖
+    name: default
+  #第一次加载慢问题
+  mvc:
+    servlet:
+      load-on-startup: 1
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 20MB
+      #配置临时路径防止被linux删除
+      location: tmpfile
+  jpa:
+    database-platform: com.iotinall.canteen.common.configuration.MySQL8WithoutFKDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      format_sql: true
+    #定义拦截器
+    properties:
+      hibernate:
+        ejb:
+          interceptor: com.iotinall.canteen.common.interceptor.JpaLogInterceptor
+    show-sql: false
+    open-in-view: true
+  datasource:
+    dynamic:
+      primary: master #主库设置成order库
+      seata: true    #手动开启seata
+      datasource:
+        master:
+          url: jdbc:mysql://192.168.101.157:3306/tenant_canteen?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&AllowPublicKeyRetrieval=True&autoReconnect=true&failOverReadOnly=false
+          username: root
+          password: rtsm157
+          type: com.zaxxer.hikari.HikariDataSource
+          hikari:
+            minimum-idle: ${default-mysql-config.minimum-idle} #最小空闲数量
+            maximum-pool-size: ${default-mysql-config.maximum-pool-size} #最大线程数量
+            auto-commit: ${default-mysql-config.auto-commit} #是否自动提交
+            idle-timeout: ${default-mysql-config.idle-timeout} #空闲时间，单位毫秒, 1分钟
+            connection-timeout: ${default-mysql-config.connection-timeout}  #等待获取连接的最长时间，单位毫秒，20秒
+            max-lifetime: ${default-mysql-config.max-lifetime} #连接最大存活时间，单位毫秒，3分钟
+            connection-test-query: ${default-mysql-config.connection-test-query}
+        storehouse:
+          url: jdbc:mysql://192.168.101.157:3306/tenant_canteen_storehouse?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&AllowPublicKeyRetrieval=True&autoReconnect=true&failOverReadOnly=false
+          username: root
+          password: rtsm157
+          type: com.zaxxer.hikari.HikariDataSource
+          hikari:
+            minimum-idle: ${default-mysql-config.minimum-idle} #最小空闲数量
+            maximum-pool-size: 20 #最大线程数量
+            auto-commit: ${default-mysql-config.auto-commit} #是否自动提交
+            idle-timeout: ${default-mysql-config.idle-timeout} #空闲时间，单位毫秒, 1分钟
+            connection-timeout: ${default-mysql-config.connection-timeout}  #等待获取连接的最长时间，单位毫秒，20秒
+            max-lifetime: ${default-mysql-config.max-lifetime} #连接最大存活时间，单位毫秒，3分钟
+            connection-test-query: ${default-mysql-config.connection-test-query}
+  redis:
+    #数据库索引
+    database: 6
+    host: 192.168.101.156
+    port: 6379
+    timeout: 3000
+    password:
+    jedis:
+      pool:
+        max-wait: -1
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+    cache:
+      redis:
+        cache-null-values: true
+  data:
+    redis:
+      repositories:
+        enabled: false
+  security:
+    user:
+      password: Gsh%IbXFcy@QywhU
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${default-nacos.server-addr} #服务注册中心地址
+      config:
+        server-addr: ${default-nacos.server-addr} #配置中心地址
+        file-extension: yaml  #指定yaml格式的配置
+        group: DEFAULT_GROUP
+        encode: utf-8
+    sentinel:
+      transport:
+        dashboard: ${master-ip}:6464
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: ${default-nacos.server-addr}
+            data-id: ${spring.application.name}-sentinel
+            group-id: DEFAULT_GROUP
+            namespace:
+            data-type: json
+            rule-type: flow
+seata:
+  enabled: true
+  tx-service-group: my_test_tx_group    #此处配置自定义的seata事务分组名称
+  enable-auto-data-source-proxy: false    #开启数据库代理
+  config:
+    type: nacos
+    nacos:
+      server-addr: ${default-nacos.server-addr}
+      group : SEATA_GROUP
+      namespace: ${default-nacos.seata-namespace}
+      username: nacos
+      password: ${default-nacos.password}
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: ${default-nacos.server-addr}
+      group: SEATA_GROUP
+      namespace: ${default-nacos.seata-namespace}
+      username: nacos
+      password: ${default-nacos.password}
+      cluster: default
+
+feign:
+  sentinel:
+    enabled: true
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 20000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logback:
+  file: ./log/${spring.application.name}
+
+logging:
+  config: classpath:logback-info.xml
+
+default-mysql-config:
+  minimum-idle: 5 #最小空闲数量
+  maximum-pool-size: 50 #最大线程数量
+  auto-commit: true #是否自动提交
+  idle-timeout: 60000 #空闲时间，单位毫秒, 1分钟
+  connection-timeout: 200000  #等待获取连接的最长时间，单位毫秒，20秒
+  max-lifetime: 1800000 #连接最大存活时间，单位毫秒，30分钟
+  connection-test-query: select 1
+#登录超时分钟
+login-timeout: 120
+
+default-nacos:
+  server-addr: 192.168.101.156:8848,192.168.101.157:8848,192.168.101.158:8848 #nacos服务器配置
+  seata-namespace: 5a6095e7-c5e2-468e-8f65-9daf91357165
+  password: nacos!
+master-ip: 192.168.101.156 #主服务器IP地址
+
+fastdfs:
+  tracker_servers: 192.168.101.157:22122 #多个逗号分隔
+  file_url: http://192.168.101.157/
+
+#阿里云OSS 文件服务器
+filemanage:
+  accessKeyId: LTAI4GEVHXMYeJj9FkGmDaQD
+  accessKeySecret: 4EAYopKDBc2fhxdWjUBh3DnflaLbfL
+  endpoint: oss-cn-shenzhen.aliyuncs.com
+  bucket: iotinall
+  file_url: https://${filemanage.bucket}.${filemanage.endpoint}/
+  baseFile: tenantcanteen/
+
+wx:
+  mini:
+    appId: wx9190990851d99268
+    appSecret: 16b3e5100ebca650f98850762fee888f
+    miniprogramState: formal

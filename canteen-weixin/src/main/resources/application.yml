@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: canteen-weixin
+#服务是否是单库，单库时启动不加载多动态数据源
+systemSingleStore: true

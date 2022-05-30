@@ -1,0 +1,31 @@
+package com.iotinall.canteen.dto.tenantuser;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+@Data
+@Accessors(chain = true)
+public class TenantUserView {
+
+    private Long id;
+
+    /**
+     * 租户名称
+     */
+    private String name;
+
+    /**
+     * 租户CODE
+     */
+    private String code;
+
+    /**
+     * 数据库连接 IP：端口
+     */
+    private String sqlUrl;
+
+    private String sqlUsername;
+
+    private String sqlPassword;
+
+}

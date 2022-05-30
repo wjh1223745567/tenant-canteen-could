@@ -1,0 +1,42 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.2.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group 'com.iotinall'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+            'io.seata:seata-spring-boot-starter:1.4.2',
+            'com.alibaba.cloud:spring-cloud-starter-alibaba-seata:2.2.5.RELEASE',
+            'mysql:mysql-connector-java:8.0.16',
+            'org.springframework.boot:spring-boot-starter-data-jpa:2.4.5',
+            'org.springframework.boot:spring-boot-starter-security',
+            'com.baomidou:dynamic-datasource-spring-boot-starter:3.3.6',
+            'org.springframework.boot:spring-boot-starter-data-redis:2.5.0',
+            'org.apache.commons:commons-lang3:3.12.0',
+            'jakarta.validation:jakarta.validation-api:2.0.1',
+            'io.swagger:swagger-annotations:1.6.2',
+            'org.hibernate.validator:hibernate-validator:7.0.1.Final',
+            'cn.hutool:hutool-all:5.3.1',
+            'net.coobird:thumbnailator:0.4.3'
+    )
+    implementation(
+            'com.aliyun.oss:aliyun-sdk-oss:3.12.0',
+            'org.csource:fastdfs-client-java:1.21',
+            'org.springframework.boot:spring-boot-starter-aop'
+    )
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}

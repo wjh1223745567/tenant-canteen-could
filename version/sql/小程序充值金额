@@ -1,0 +1,8 @@
+INSERT INTO `canteen_test`.`sys_dict_detail`(`label`, `value`, `sort`, `typ`, `group_code`, `create_time`, `update_time`, `remark`)
+VALUES ('50', '50', 0, 0, 'recharge_tag', '2021-04-22 16:56:38', '2021-04-22 16:56:42', NULL);
+INSERT INTO `canteen_test`.`sys_dict_detail`(`label`, `value`, `sort`, `typ`, `group_code`, `create_time`, `update_time`, `remark`)
+VALUES ('100', '100', 0, 0, 'recharge_tag', '2021-04-22 16:56:38', '2021-04-22 16:56:42', NULL);
+INSERT INTO `canteen_test`.`sys_dict_detail`(`label`, `value`, `sort`, `typ`, `group_code`, `create_time`, `update_time`, `remark`)
+VALUES ('300', '300', 0, 0, 'recharge_tag', '2021-04-22 16:56:38', '2021-04-22 16:56:42', NULL);
+INSERT INTO `canteen_test`.`sys_dict_detail`(`label`, `value`, `sort`, `typ`, `group_code`, `create_time`, `update_time`, `remark`)
+VALUES ('500', '500', 0, 0, 'recharge_tag', '2021-04-22 16:56:38', '2021-04-22 16:56:42', NULL);

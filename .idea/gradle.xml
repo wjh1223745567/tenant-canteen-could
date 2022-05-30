@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="C:/Program Files/gradle-4.10.3" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/canteen-activity" />
+            <option value="$PROJECT_DIR$/canteen-common" />
+            <option value="$PROJECT_DIR$/canteen-devicemanagement" />
+            <option value="$PROJECT_DIR$/canteen-eshop" />
+            <option value="$PROJECT_DIR$/canteen-feign-api" />
+            <option value="$PROJECT_DIR$/canteen-food-notes" />
+            <option value="$PROJECT_DIR$/canteen-gateway" />
+            <option value="$PROJECT_DIR$/canteen-haircut" />
+            <option value="$PROJECT_DIR$/canteen-kitchen" />
+            <option value="$PROJECT_DIR$/canteen-lightmanage" />
+            <option value="$PROJECT_DIR$/canteen-menu" />
+            <option value="$PROJECT_DIR$/canteen-nutrientelements" />
+            <option value="$PROJECT_DIR$/canteen-nutritionenc" />
+            <option value="$PROJECT_DIR$/canteen-organization" />
+            <option value="$PROJECT_DIR$/canteen-picturevector" />
+            <option value="$PROJECT_DIR$/canteen-quartz" />
+            <option value="$PROJECT_DIR$/canteen-room-reserve" />
+            <option value="$PROJECT_DIR$/canteen-statistics" />
+            <option value="$PROJECT_DIR$/canteen-stock" />
+            <option value="$PROJECT_DIR$/canteen-storehouse" />
+            <option value="$PROJECT_DIR$/canteen-tcp" />
+            <option value="$PROJECT_DIR$/canteen-weixin" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.12/48e4e5d60309ebd833bc528dcf77668eab3cd72c/lombok-1.18.12.jar" />
+        </processorPath>
+        <module name="tenant-canteen-master.canteen-kitchen.main" />
+        <module name="tenant-canteen-master.canteen-nutritionenc.main" />
+        <module name="tenant-canteen-master.canteen-activity.main" />
+        <module name="tenant-canteen-master.canteen-food-notes.main" />
+        <module name="tenant-canteen-master.canteen-lightmanage.main" />
+        <module name="tenant-canteen-master.canteen-weixin.main" />
+        <module name="tenant-canteen-master.canteen-feign-api.main" />
+        <module name="tenant-canteen-master.canteen-gateway.main" />
+        <module name="tenant-canteen-master.canteen-statistics.main" />
+        <module name="tenant-canteen-master.canteen-tcp.main" />
+        <module name="tenant-canteen-master.canteen-devicemanagement.main" />
+        <module name="tenant-canteen-master.canteen-quartz.main" />
+        <module name="tenant-canteen-master.canteen-room-reserve.main" />
+        <module name="tenant-canteen-master.canteen-picturevector.main" />
+        <module name="tenant-canteen-master.canteen-stock.main" />
+        <module name="tenant-canteen-master.canteen-haircut.main" />
+        <module name="tenant-canteen-master.canteen-common.main" />
+        <module name="tenant-canteen-master.canteen-menu.main" />
+        <module name="tenant-canteen-master.canteen-organization.main" />
+        <module name="tenant-canteen-master.canteen-storehouse.main" />
+        <module name="tenant-canteen-master.canteen-nutrientelements.main" />
+        <module name="tenant-canteen-master.canteen-eshop.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8" />
+  </component>
+</project>

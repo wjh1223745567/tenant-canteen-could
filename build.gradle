@@ -1,0 +1,43 @@
+allprojects {
+    apply plugin: 'java'
+    group = 'com.iotinall'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '1.8'
+}
+subprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url "http://192.168.101.148:8010/repository/maven-public/" }
+        mavenLocal()
+        mavenCentral()
+    }
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+        all*.exclude module: 'spring-boot-starter-tomcat'
+    }
+    dependencies {
+        implementation (
+                'org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR8',
+                'io.github.openfeign:feign-httpclient:11.2',
+                'org.springframework.cloud:spring-cloud-starter-openfeign:2.2.5.RELEASE',
+                'org.springframework.boot:spring-boot-starter-actuator:2.2.5.RELEASE',
+                'com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.2.5.RELEASE',
+                'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2.2.5.RELEASE',
+                'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2.2.1.RELEASE',
+                'com.alibaba.cloud:spring-cloud-starter-alibaba-sentinel:2.2.5.RELEASE',
+                'com.alibaba.csp:sentinel-datasource-nacos:1.8.0',
+                'com.alibaba:fastjson:1.2.76',
+                'org.projectlombok:lombok:1.18.20',
+                'org.springframework.boot:spring-boot-starter-web',
+                'org.springframework.boot:spring-boot-starter-undertow',
+                'org.springframework.boot:spring-boot-starter-test',
+        )
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
